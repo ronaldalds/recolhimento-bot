@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from Src.Middleware.authentication import authorization
+from Src.Middleware.authentication import authorization_adm, authorization_group
 from Src.Controller.recolhimento_controller import handle_start_recolhimento, handle_stop_recolhimento, handle_status_recolhimento
 
 load_dotenv()
@@ -34,7 +34,7 @@ def start(client, message: Message):
 """)
 
 @app.on_message(filters.command("recolhimento"))
-@authorization(chat_group)
+@authorization_group(chat_group)
 def financeiro(client, message: Message):
     message.reply_text(f"""
 /iniciar_recolhimento - Iniciar Recolhimento
@@ -43,7 +43,7 @@ def financeiro(client, message: Message):
 """)
 
 @app.on_message(filters.command("chatgroup"))
-@authorization(chat_adm)
+@authorization_adm(chat_adm)
 def handle_chatgroup_id(client: Client, message: Message):
     client.send_message(message.from_user.id, message)
 
@@ -55,25 +55,25 @@ def handle_chat_id(client: Client, message: Message):
 
 # iniciar cancelamento
 @app.on_message(filters.command("iniciar_recolhimento"))
-@authorization(chat_group)
+@authorization_group(chat_group)
 def iniciar_recolhimento(client: Client, message: Message):
     handle_start_recolhimento(client, message)
 
 # parar cancelamento
 @app.on_message(filters.command("parar_recolhimento"))
-@authorization(chat_group)
+@authorization_group(chat_group)
 def parar_recolhimento(client: Client, message: Message):
     handle_stop_recolhimento(client, message)
 
 # status cancelamento
 @app.on_message(filters.command("status_recolhimento"))
-@authorization(chat_group)
+@authorization_group(chat_group)
 def status_recolhimento(client: Client, message: Message):
     handle_status_recolhimento(client, message)
 
 # stop service
 @app.on_message(filters.command("stop_service"))
-@authorization(chat_adm)
+@authorization_adm(chat_adm)
 def stop(client: Client, message: Message):
     print("Service Stopping")
     app.stop()

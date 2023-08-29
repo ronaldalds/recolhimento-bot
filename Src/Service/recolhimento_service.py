@@ -71,7 +71,7 @@ def recolhimento(
         print(txt)
         return txt
 
-    instance.minimizeChat()
+    # instance.minimizeChat()
 
     # fechar tela de complete seu cadastro
     try:

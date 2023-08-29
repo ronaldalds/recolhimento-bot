@@ -86,7 +86,7 @@ def handle_start_recolhimento(client: Client, message: Message):
         if message.document and message.document.mime_type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
             running = True
             # Quantidade de itens na Pool
-            limite_threads = 10
+            limite_threads = 5
 
             # Baixe o arquivo XLSX
             file_path = message.download(in_memory=True)
