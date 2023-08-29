@@ -11,7 +11,6 @@ from Src.Api.mk.mk_select import (
 )
 from dotenv import load_dotenv
 import os
-import logging
 from datetime import datetime, timedelta
 
 load_dotenv()
@@ -27,8 +26,7 @@ def recolhimento(
         detalhe_os,
         loja
         ):
-    ajuste_gmt = timedelta(hours=3)
-    hora = datetime.now() - ajuste_gmt
+    hora = datetime.now()
     print(f'Iniciou recolhimento {hora.strftime("%d/%m/%Y %H:%M")} MK{mk:02} contrato:{contrato} cpf:{cpf} loja:{loja}')
     error = f"\033[91mERROR\033[0m;RECOLHIMENTO;{hora.strftime('%d/%m/%Y %H:%M')}"
     warning = f"\033[93mWARNING\033[0m;RECOLHIMENTO;{hora.strftime('%d/%m/%Y %H:%M')}"
@@ -66,10 +64,9 @@ def recolhimento(
     try:
         instance.login()
     except:
-        txt = f'{error};{prefixo_log_recolhimento};Failed to login.'
         instance.close()
-        print(txt)
-        return txt
+        print(f'{error};{prefixo_log_recolhimento};Failed to login.')
+        return f'{error};{prefixo_log_recolhimento};Failed to login.'
 
     # instance.minimizeChat()
 
@@ -99,19 +96,17 @@ def recolhimento(
         instance.write('//input[@id="lookupSearchQuery"]', f"{cpf}" + Keys.ENTER)
         instance.click(f'//option[@value="{cod}"]')
     except:
-        txt = f'{error};{prefixo_log_recolhimento};Identificador O.S Nome / Documento / Código.'
         instance.close()
-        print(txt)
-        return txt
+        print(f'{error};{prefixo_log_recolhimento};Identificador O.S Nome / Documento / Código.')
+        return f'{error};{prefixo_log_recolhimento};Identificador O.S Nome / Documento / Código.'
 
     # Avançar no assistente de O.S primeira tela
     try:
         instance.click('//div[@class="HTMLTabContainer"]/div[2]//button[@title="Avançar no assistente de O.S."]')
     except:
-        txt = f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S primeira tela.'
         instance.close()
-        print(txt)
-        return txt
+        print(f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S primeira tela.')
+        return f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S primeira tela.'
     
     # Escolha de conexão Conexão Associada
     try:
@@ -120,10 +115,9 @@ def recolhimento(
         instance.write('//input[@id="lookupSearchQuery"]', f"{conexao_associada}" + Keys.ENTER)
         instance.click(f'//option[@value="{conexao_associada}"]')
     except:
-        txt = f'{error};{prefixo_log_recolhimento};Escolha de conexão Conexão Associada.'
         instance.close()
-        print(txt)
-        return txt
+        print(f'{error};{prefixo_log_recolhimento};Escolha de conexão Conexão Associada.')
+        return f'{error};{prefixo_log_recolhimento};Escolha de conexão Conexão Associada.'
     
     # Escolha nivel de SLA se habilitado
     try:
@@ -133,17 +127,15 @@ def recolhimento(
         instance.write('//input[@id="lookupSearchQuery"]', "Preventivo" + Keys.ENTER)
         instance.click(f'//option[@value="{valor_nivel_sla}"]')
     except:
-        txt = f'{warning};{prefixo_log_recolhimento};Escolha nivel de SLA se habilitado.'
-        print(txt)
+        print(f'{warning};{prefixo_log_recolhimento};Escolha nivel de SLA se habilitado.')
 
     # Avançar no assistente de O.S segunda tela
     try:
         instance.click('//div[@class="HTMLTabContainer"]/div[3]//button[@title="Avançar no assistente de O.S."]')
     except:
-        txt = f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S segunda tela.'
         instance.close()
-        print(txt)
-        return txt
+        print(f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S segunda tela.')
+        return f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S segunda tela.'
 
     # Escolha tipo de O.S
     try:
@@ -152,38 +144,34 @@ def recolhimento(
         instance.write('//input[@id="lookupSearchQuery"]', f"{tipo_da_os}" + Keys.ENTER)
         instance.click(f'//option[@value="{valor_tipo_de_os}"]')
     except:
-        txt = f'{error};{prefixo_log_recolhimento};Escolha tipo de O.S.'
         instance.close()
-        print(txt)
-        return txt
+        print(f'{error};{prefixo_log_recolhimento};Escolha tipo de O.S.')
+        return f'{error};{prefixo_log_recolhimento};Escolha tipo de O.S.'
 
     # Escrever Relato do problema
     try:
         instance.iframeForm()
         instance.write('//textarea[@title="Neste campo é informado o relato do cliente perante a abertura da Ordem de Serviço."]', detalhe_os)
     except:
-        txt = f'{error};{prefixo_log_recolhimento};Escrever Relato do problema.'
         instance.close()
-        print(txt)
-        return txt
+        print(f'{error};{prefixo_log_recolhimento};Escrever Relato do problema.')
+        return f'{error};{prefixo_log_recolhimento};Escrever Relato do problema.'
 
     # Avançar no assistente de O.S terceira tela
     try:
         instance.click('//div[@class="HTMLTabContainer"]/div[4]//button[@title="Avançar no assistente de O.S."]')
     except:
-        txt = f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S terceira tela.'
         instance.close()
-        print(txt)
-        return txt
+        print(f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S terceira tela.')
+        return f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S terceira tela.'
     
     # Avançar no assistente de O.S quarta tela
     try:
         instance.click('//div[@class="HTMLTabContainer"]/div[8]//button[@title="Avançar no assistente de O.S."]')
     except:
-        txt = f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S quarta tela.'
         instance.close()
-        print(txt)
-        return txt
+        print(f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S quarta tela.')
+        return f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S quarta tela.'
 
 
     # Escolha Grupo de atendimento
@@ -193,28 +181,25 @@ def recolhimento(
         instance.write('//input[@id="lookupSearchQuery"]', f"{grupo_atendimento_os}" + Keys.ENTER)
         instance.click(f'//option[@value="{valor_grupo_atendimento}"]')
     except:
-        txt = f'{error};{prefixo_log_recolhimento};Escolha Grupo de atendimento.'
         instance.close()
-        print(txt)
-        return txt
+        print(f'{error};{prefixo_log_recolhimento};Escolha Grupo de atendimento.')
+        return f'{error};{prefixo_log_recolhimento};Escolha Grupo de atendimento.'
 
     # Avançar no assistente de O.S quinta tela
     try:
         instance.click('//div[@class="HTMLTabContainer"]/div[9]//button[@title="Avançar no assistente de O.S."]')
     except:
-        txt = f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S quinta tela.'
         instance.close()
-        print(txt)
-        return txt
+        print(f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S quinta tela.')
+        return f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S quinta tela.'
 
     # Avançar no assistente de O.S sexta tela
     try:
         instance.click('//div[@class="HTMLTabContainer"]/div[10]//button[@title="Clique para efetivar a criação desta O.S.."]')
     except:
-        txt = f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S sexta tela.'
         instance.close()
-        print(txt)
-        return txt
+        print(f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S sexta tela.')
+        return f'{error};{prefixo_log_recolhimento};Avançar no assistente de O.S sexta tela.'
 
     # alert concluir O.S recolhimento
     instance.include()
@@ -222,5 +207,5 @@ def recolhimento(
     # log recolhimento de contrato conluído
     time.sleep(5)
     instance.close()
-    txt = f'{sucess};{prefixo_log_recolhimento};recolhimento de contrato conluído'
-    return txt
+    print(f'{sucess};{prefixo_log_recolhimento};recolhimento de contrato conluído')
+    return f'{sucess};{prefixo_log_recolhimento};recolhimento de contrato conluído'
