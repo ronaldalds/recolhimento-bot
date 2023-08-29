@@ -7,7 +7,7 @@ from Src.Controller.recolhimento_controller import handle_start_recolhimento, ha
 
 load_dotenv()
 
-version = "0.0.1"
+version = "0.0.2"
 
 app = Client(
     name=os.getenv("BOT_NAME_TELEGRAM"), 
