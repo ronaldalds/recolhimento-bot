@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  recolhimento:
+    container_name: recolhimento
+    build: .
+    image: recolhimento:0.0.2
+    shm_size: 2g
+    tty: true
+    command: python3 main.py
