@@ -15,4 +15,4 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD xvfb-run --server-args="-screen 0 1280x960x24" python3 main.py
+CMD xvfb-run --server-args="-screen 0, 1280x960" -a python3 main.py
