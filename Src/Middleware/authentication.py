@@ -1,22 +1,19 @@
+import os
+from dotenv import load_dotenv
 from pyrogram import Client
 from pyrogram.types import Message
 
-# Verificação de autorização grupo
-def authorization_group(ids_autorizados):
-    def decorador(func):
-        def verificacao(client: Client, message: Message):
-            if message.chat.id in ids_autorizados:
-                return func(client, message)
-            else:
-                message.reply_text("Você não está autorizado a usar este bot.")
-        return verificacao
-    return decorador
+load_dotenv()
 
-# Verificação de autorização adm
-def authorization_adm(ids_autorizados):
+# Verificação de autorização grupo
+def authorization():
+    chat = [
+        int(os.getenv("CHAT_ID_ADM")),
+        int(os.getenv("CHAT_ID_GROUP_RECOLHIMENTO")),
+    ]
     def decorador(func):
         def verificacao(client: Client, message: Message):
-            if message.from_user.id in ids_autorizados:
+            if message.chat.id in chat:
                 return func(client, message)
             else:
                 message.reply_text("Você não está autorizado a usar este bot.")
