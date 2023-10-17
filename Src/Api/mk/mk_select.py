@@ -98,6 +98,7 @@ GRUPO_DE_ATENDIMENTO_MK01 = {
     "ARARENDÁ": 1,
     "BARROQUINHA": 130,
     "BOA VIAGEM": 116,
+    "BRASILEIRA": 139,
     "CAMOCIM": 120,
     "CANINDÉ": 131,
     "CARIRÉ": 22,
