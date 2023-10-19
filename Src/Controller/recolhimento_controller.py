@@ -17,6 +17,7 @@ lojas_mk1 = {
     "LOJA ANAPURUS": 2,
     "LOJA ARARENDÁ": 2,
     "LOJA BOA VIAGEM": 3,
+    "LOJA BRASILEIRA": 2,
     "LOJA CAMOCIM": 10,
     "LOJA CARIRÉ": 2,
     "LOJA CARNAUBAL": 2,
@@ -120,7 +121,7 @@ def handle_start_recolhimento(client: Client, message: Message):
                     lista = df.to_dict(orient='records')
 
                     # Verificar se a chave 'MK' contém valor NaN
-                    lista = [dados for dados in lista if not pd.isna(dados.get('MK'))]
+                    lista = [dados for dados in lista if isinstance(dados.get('MK'), int)]
                     
                     # Verificar se a chave Qtd Conexções é igual a 1 e OS Cancelamento ou Recolhimento é igual a N
                     lista = [dados for dados in lista if (str(dados.get('Qtd Conexoes')) == "1") and (dados.get('OS Cancelamento ou Recolhimento') == "N")]
