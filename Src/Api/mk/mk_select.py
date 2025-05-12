@@ -52,6 +52,8 @@ TIPO_DA_OS = {
     "Recolhimento de equipamento - Radio": 114,
     "Recolhimento de equipamento - TV": 115,
     "Recolhimento de equipamento - WiFi Adicional": 136,
+    "Entrega de Carnê": 145,
+    "Instalação Nova - Fibra": 89,
 }
 
 GRUPO_DE_ATENDIMENTO_TEST = {

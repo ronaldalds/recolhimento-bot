@@ -13,50 +13,50 @@ load_dotenv()
 running = False
 
 lojas_mk1 = {
-    "LOJA ALCÂNTARAS": 2,
-    "LOJA ANAPURUS": 2,
-    "LOJA ARARENDÁ": 2,
-    "LOJA BOA VIAGEM": 3,
-    "LOJA BRASILEIRA": 2,
-    "LOJA CAMOCIM": 10,
-    "LOJA CARIRÉ": 2,
-    "LOJA CARNAUBAL": 2,
-    "LOJA GUARACIABA DO NORTE": 5,
-    "LOJA HIDROLÂNDIA": 2,
-    "LOJA IBIAPINA": 2,
-    "LOJA IPUEIRAS": 2,
-    "LOJA ITATIRA": 2,
-    "LOJA LISIEUX": 2,
-    "LOJA MATA ROMA": 2,
-    "LOJA MERUOCA": 2,
-    "LOJA MONSENHOR TABOSA": 2,
-    "LOJA NOVO ORIENTE": 3,
-    "LOJA PEDRO II": 3,
-    "LOJA PIRACURUCA": 3,
-    "LOJA PIRIPIRI": 4,
-    "LOJA RERIUTABA": 2,
-    "LOJA SANTA QUITÉRIA": 3,
-    "LOJA SÃO BERNARDO": 2,
-    "LOJA TAMBORIL": 2,
-    "LOJA UBAJARA": 2,
-    "LOJA VARJOTA": 4,
+    # "LOJA ALCÂNTARAS": 2,
+    # "LOJA ANAPURUS": 2,
+    # "LOJA ARARENDÁ": 2,
+    # "LOJA BOA VIAGEM": 3,
+    # "LOJA BRASILEIRA": 2,
+    # "LOJA CAMOCIM": 10,
+    # "LOJA CARIRÉ": 2,
+    # "LOJA CARNAUBAL": 2,
+    # "LOJA GUARACIABA DO NORTE": 5,
+    # "LOJA HIDROLÂNDIA": 2,
+    # "LOJA IBIAPINA": 2,
+    # "LOJA IPUEIRAS": 2,
+    # "LOJA ITATIRA": 2,
+    # "LOJA LISIEUX": 2,
+    # "LOJA MATA ROMA": 2,
+    # "LOJA MERUOCA": 2,
+    # "LOJA MONSENHOR TABOSA": 2,
+    # "LOJA NOVO ORIENTE": 3,
+    # "LOJA PEDRO II": 3,
+    # "LOJA PIRACURUCA": 3,
+    # "LOJA PIRIPIRI": 4,
+    # "LOJA RERIUTABA": 2,
+    # "LOJA SANTA QUITÉRIA": 3,
+    # "LOJA SÃO BERNARDO": 2,
+    # "LOJA TAMBORIL": 2,
+    # "LOJA UBAJARA": 2,
+    # "LOJA VARJOTA": 4,
 }
 
 lojas_mk3 = {
-    "LOJA CASTANHAL": 8,
-    "LOJA VIGIA": 5,
-    "LOJA TERRA ALTA": 4,
-    "LOJA ICOARACI": 5,
-    "LOJA MARITUBA": 9,
-    "LOJA VILA DOS CABANOS": 8,
-    "LOJA BARCARENA": 4,
-    "LOJA MAGUARI": 4,
-    "LOJA ABAETETUBA": 12,
-    "LOJA TUCURUI": 5,
-    "LOJA TAILÂNDIA": 4,
-    "LOJA MOJU": 4,
-    "LOJA MOCAJUBA": 3,
-    "LOJA BAIÃO": 2
+    # "LOJA CASTANHAL": 8,
+    # "LOJA VIGIA": 5,
+    # "LOJA TERRA ALTA": 4,
+    # "LOJA ICOARACI": 5,
+    # "LOJA MARITUBA": 9,
+    # "LOJA VILA DOS CABANOS": 8,
+    # "LOJA BARCARENA": 4,
+    # "LOJA MAGUARI": 4,
+    # "LOJA ABAETETUBA": 12,
+    # "LOJA TUCURUI": 5,
+    # "LOJA TAILÂNDIA": 4,
+    # "LOJA MOJU": 4,
+    # "LOJA MOCAJUBA": 3,
+    # "LOJA BAIÃO": 2
 }
 
 def __limpa_lista(lista):
@@ -90,7 +90,7 @@ def handle_start_recolhimento(client: Client, message: Message):
         ):
             running = True
             # Quantidade de itens na Pool
-            limite_threads = 5
+            limite_threads = 10
 
             # Baixe o arquivo XLSX
             file_path = message.download(in_memory=True)
